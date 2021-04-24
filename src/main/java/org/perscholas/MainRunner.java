@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 import org.perscholas.models.Department;
 import org.perscholas.models.Employee;
@@ -43,12 +44,16 @@ public class MainRunner {
 
         try{
             tx = session.beginTransaction();
-            Employee e = new Employee(100, "Jafer Alhaboubi", "jhaboubi@perscholas.org");
+            Employee e = new Employee(100, "Jafer", "jafer@perscholas.org");
+            Employee e2 = new Employee(200, "Tim", "tim@perscholas.org");
             session.save(e);
+            session.save(e2);
+
             tx.commit();
             // HQL Query
-          //  List employees = session.createQuery("From Employee").list();
-
+            List employees = session.createQuery("From Employee").list();
+            for(Object emp:employees)
+                System.out.println(((Employee)emp));
         }catch (HibernateException e){
             if(tx != null) tx.rollback();
             e.printStackTrace();
@@ -59,4 +64,7 @@ public class MainRunner {
 
 
     } // main
+
+
+
 } // class

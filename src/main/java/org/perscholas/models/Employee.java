@@ -5,12 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.query.Query;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -29,6 +27,8 @@ public class Employee {
     String email;
     // @ManyToOne
    // Department department;
+
+
 
 
 }
